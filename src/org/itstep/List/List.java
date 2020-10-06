@@ -1,6 +1,5 @@
 package org.itstep.List;
 
-import java.util.spi.AbstractResourceBundleProvider;
 
 public class List {
     Element first;
