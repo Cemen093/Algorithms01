@@ -36,7 +36,7 @@ public class List {
             last = tmp;
         }
     }
-    public void addMiddle(int value, int index){
+    public void addOnList(int value, int index){
         if (index > -1) {
             if (first == null){
                 if (index == 0){
@@ -74,7 +74,7 @@ public class List {
             }
         }
     }
-    public void addMiddle(int value){
+    public void addOnList(int value){
         if (first == null || value < first.data){
             addFist(value);
         }
@@ -108,7 +108,7 @@ public class List {
             last = null;
         }
     }
-    public void delMiddle(int index){
+    public void delOnListIndex(int index){
         if (index > - 1){
             if (first != null){
                 //удаляем из начала
@@ -134,6 +134,42 @@ public class List {
                 }
                 else{
                     tmp.before.next = tmp.next;
+                }
+            }
+        }
+    }
+    public void delOnListKey(int key){
+        if (first != null){
+            if (first.data == key){
+                first = first.next;
+            }
+            else {
+                Element current = first;
+                while (current.next != null && current.next.data < key) {
+                    current = current.next;
+                }
+                if (current.next != null && current.next.data == key) {
+                    current.next = current.next.next;
+                }
+            }
+        }
+    }
+    public void delOnListAllKey(int key){
+        if (first != null){
+            if (first.data == key){
+                first = first.next;
+            }
+            else {
+                Element current = first;
+                while (current.next != null && current.next.data < key) {
+                    current = current.next;
+                }
+                if (current.next != null && current.next.data == key) {
+                    Element tmp = current;
+                    while (tmp.next != null && tmp.next.data == key){
+                        tmp = tmp.next;
+                    }
+                    current.next = tmp.next;
                 }
             }
         }
