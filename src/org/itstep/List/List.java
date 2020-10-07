@@ -14,9 +14,6 @@ public class List {
         {
             first = new Element(value);
             last = first;
-            /*//Емм, ссылки же по умолчанию на null ссылаются нет? зачем это?
-            first.next = null;
-            first.before = null;*/
         }
         else
         {
@@ -77,6 +74,20 @@ public class List {
             }
         }
     }
+    public void addMiddle(int value){
+        if (first == null || value < first.data){
+            addFist(value);
+        }
+        else {
+            Element current = first;
+            while (current.next != null && value > current.next.data){
+                current = current.next;
+            }
+            Element tmp = new Element(value);//10 мин думал почему он массив 0 заполняет
+            tmp.next = current.next;
+            current.next = tmp;
+        }
+    }
     public void delFirst(){
         if (first != last) {
             first = first.next;//удалять же не надо да?
@@ -128,12 +139,18 @@ public class List {
         }
     }
     public void show(){
-        Element current = first;//выделение памяти тут было бы избыточно, я правильно понял?
-        while (current != null){
-            System.out.print(current.data + " ");
-            current = current.next;
+        if (first != null){
+            System.out.println("Лист: ");
+            Element current = first;
+            while (current != null){
+                System.out.print(current.data + " ");
+                current = current.next;
+            }
+            System.out.println();
         }
-        System.out.println();//Хм, пусть будет
+        else{
+            System.out.println("Лист пуст");
+        }
     }
 }
 
