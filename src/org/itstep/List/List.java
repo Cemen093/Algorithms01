@@ -51,8 +51,7 @@ public class List {
                     return;
                 }
                 //ищем подходящее место
-                Element tmp;
-                tmp = first;
+                Element tmp = first;
                 for (int i = 0; i < index; i++) {
                     if (tmp == null) {
                         return;
@@ -85,6 +84,13 @@ public class List {
             }
             Element tmp = new Element(value);//10 мин думал почему он массив 0 заполняет
             tmp.next = current.next;
+            tmp.before = current;
+            if (current.next != null) {
+                current.next.before = tmp;
+            }
+            else{
+                last = tmp;
+            }
             current.next = tmp;
         }
     }
